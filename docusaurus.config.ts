@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Git, GitHub CLI & KI-Agenten',
+  tagline: 'Vom ersten Commit bis zur automatisierten Zusammenarbeit mit GitHub.',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -14,25 +14,26 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
+  // Production URL for GitHub Pages (project pages).
   url: 'https://ompkitty.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  // Served under /<repo>/ for project pages.
   baseUrl: '/AI-Github-CLI-Intro/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'ompkitty', // Usually your GitHub org/user name.
-  projectName: 'AI-Github-CLI-Intro', // Usually your repo name.
+  organizationName: 'ompkitty',
+  projectName: 'AI-Github-CLI-Intro',
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
+
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'de',
+    locales: ['de'],
   },
 
   presets: [
@@ -41,26 +42,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/ompkitty/AI-Github-CLI-Intro/tree/main/',
+          showLastUpdateTime: true,
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/ompkitty/AI-Github-CLI-Intro/tree/main/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -69,15 +55,15 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      defaultMode: 'light',
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Git · gh · Agents',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Git, GitHub CLI und KI-Agenten',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,11 +71,20 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Dokumentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          to: '/docs/introduction/what-is-git',
+          label: 'Einstieg',
+          position: 'left',
+        },
+        {
+          to: '/docs/reference/gh-cheatsheet',
+          label: 'Referenz',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/ompkitty/AI-Github-CLI-Intro',
           label: 'GitHub',
           position: 'right',
         },
@@ -99,50 +94,87 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Einstieg',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Was ist Git?',
+              to: '/docs/introduction/what-is-git',
+            },
+            {
+              label: 'Was ist die GitHub CLI?',
+              to: '/docs/introduction/what-is-github-cli',
+            },
+            {
+              label: 'Warum KI-Agenten?',
+              to: '/docs/introduction/why-ai-agents',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Schwerpunkte',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Git-Grundlagen',
+              to: '/docs/git/repository-basics',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'GitHub CLI',
+              to: '/docs/github-cli/authentication',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'KI-Agenten',
+              to: '/docs/ai-agents/operating-model',
+            },
+            {
+              label: 'Automatisierung',
+              to: '/docs/automation/github-actions',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Referenz',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Git-Cheatsheet',
+              to: '/docs/reference/git-cheatsheet',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'gh-Cheatsheet',
+              to: '/docs/reference/gh-cheatsheet',
+            },
+            {
+              label: 'Glossar',
+              to: '/docs/reference/glossary',
+            },
+          ],
+        },
+        {
+          title: 'Quellen',
+          items: [
+            {
+              label: 'Git-Dokumentation',
+              href: 'https://git-scm.com/docs',
+            },
+            {
+              label: 'GitHub CLI Manual',
+              href: 'https://cli.github.com/manual/',
+            },
+            {
+              label: 'GitHub Docs',
+              href: 'https://docs.github.com/',
+            },
+            {
+              label: 'Repository',
+              href: 'https://github.com/ompkitty/AI-Github-CLI-Intro',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Git, GitHub CLI & KI-Agenten. Gebaut mit Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
     },
   } satisfies Preset.ThemeConfig,
 };

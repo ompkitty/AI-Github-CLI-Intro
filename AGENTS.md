@@ -1,448 +1,445 @@
-# AGENTS.md — Docusaurus & GitHub CLI Arbeitsrichtlinien
+# AGENTS.md — Git, GitHub CLI & KI-Agenten Documentation
 
-## Zweck
+## 1. Zweck und thematischer Rahmen
 
-Diese Datei definiert die Arbeitsweise eines KI-Coding-Agenten in diesem Docusaurus-Repository. Der Agent arbeitet primär lokal mit Git und nutzt die GitHub CLI (`gh`) für Vorgänge auf GitHub.
+Dieses Repository ist eine **praxisorientierte Dokumentation über Git, GitHub CLI (`gh`) und die Zusammenarbeit von KI-Coding-Agenten mit Git/GitHub**.
 
-Die Regeln gelten für Dokumentation, Konfiguration, React/MDX-Code, Tests, Builds, Issues, Pull Requests und GitHub Actions.
+Docusaurus ist ausschließlich die technische Veröffentlichungsplattform. Es ist **nicht** das fachliche Hauptthema der Website. Bestehende Inhalte, die primär Docusaurus erklären, sollen im Rahmen einer thematischen Neuausrichtung systematisch durch Inhalte rund um Git, GitHub CLI, Agenten-Workflows und Automatisierung ersetzt oder neu eingeordnet werden.
 
-## Technischer Kontext
+Die Dokumentation soll erklären:
 
-- Framework: Docusaurus 3.x
-- Aktuelle offizielle Dokumentation: https://docusaurus.io/docs
-- Zum Zeitpunkt der Erstellung: Docusaurus 3.10.2
-- Node.js: mindestens 20.x
-- Paketmanager: den bereits im Repository verwendeten Paketmanager beibehalten (`npm`, `yarn`, `pnpm` oder `bun`)
-- Versionskontrolle: Git
-- GitHub-Integration: GitHub CLI (`gh`)
+- wie Git lokal funktioniert,
+- wie GitHub CLI GitHub aus dem Terminal heraus steuerbar macht,
+- wie Menschen und KI-Agenten mit Git und GitHub zusammenarbeiten,
+- welche Automatisierungs- und Integrationsmöglichkeiten existieren,
+- wie Änderungen sicher geplant, ausgeführt, geprüft und veröffentlicht werden,
+- welche Grenzen, Risiken und Berechtigungen Agenten berücksichtigen müssen.
 
-Docusaurus ist ein statischer Site-Generator auf React-Basis. Dokumentationsseiten liegen typischerweise unter `docs/`; benutzerdefinierte Seiten und React-Komponenten typischerweise unter `src/`; statische Dateien unter `static/`. Die genauen Pfade dieses Repositories haben Vorrang vor den Standardannahmen.
+## 2. Primäre Quellen und Aktualität
 
-## Prioritäten
+Bei technischen Aussagen immer zuerst die offiziellen Quellen berücksichtigen. Vor allem bei CLI-Befehlen, Actions, Berechtigungen und sich ändernden Features müssen aktuelle Quellen geprüft werden.
 
-1. Bestehende Repository-Konventionen erhalten.
-2. Anforderungen des aktuellen Tasks erfüllen.
-3. Kleine, nachvollziehbare Änderungen bevorzugen.
-4. Bestehende APIs, URLs, IDs, Slugs und Sidebar-Strukturen nicht unnötig verändern.
-5. Änderungen vor Abschluss lokal validieren.
-6. GitHub-Aktionen nachvollziehbar und mit minimalen Berechtigungen durchführen.
-7. Keine Secrets, Tokens oder privaten Inhalte ausgeben.
+Primärquellen:
 
-## Erster Schritt bei jedem Task
+- Docusaurus: https://docusaurus.io/docs
+- Git: https://git-scm.com/docs
+- GitHub CLI: https://cli.github.com/manual/
+- GitHub CLI Repository: https://github.com/cli/cli
+- GitHub Docs: https://docs.github.com/
+- GitHub Actions: https://docs.github.com/en/actions
+- GitHub Pages: https://docs.github.com/en/pages
 
-Vor Änderungen:
+Docusaurus stellt statische Dateien im `build/`-Verzeichnis bereit; Hosting und Deployment werden von der gewählten Plattform übernommen. Für dieses Projekt ist GitHub Pages mit GitHub Actions der bevorzugte Veröffentlichungsweg.
+
+GitHub CLI umfasst unter anderem `gh auth`, `gh repo`, `gh issue`, `gh pr`, `gh run`, `gh workflow`, `gh api` sowie aktuelle Zusatzbereiche wie `gh agent-task` und `gh skill`. Diese Befehle dürfen in der Dokumentation nicht als erfundene oder hypothetische Features dargestellt werden; ihre aktuelle Verfügbarkeit ist vor der Veröffentlichung zu prüfen.
+
+## 3. Zielgruppen
+
+Die Dokumentation richtet sich an:
+
+- Entwickler, die Git und GitHub CLI praktisch lernen wollen,
+- DevOps- und Platform-Teams,
+- technische Autoren,
+- Nutzer von Coding-Agenten,
+- Teams, die Agenten sicher in bestehende Git- und GitHub-Prozesse integrieren wollen.
+
+Schreibe so, dass Einsteiger einen verständlichen Einstieg bekommen und erfahrene Nutzer schnell zu konkreten Befehlen, Workflows und Referenzen springen können.
+
+## 4. Verbindliche Informationsarchitektur
+
+Die Website soll fachlich neu strukturiert werden. Eine geeignete Zielstruktur ist:
+
+```text
+docs/
+├── 01-introduction/
+│   ├── what-is-git.md
+│   ├── what-is-github-cli.md
+│   └── why-ai-agents.md
+├── 02-git/
+│   ├── installation.md
+│   ├── repository-basics.md
+│   ├── staging-commits.md
+│   ├── branches.md
+│   ├── merge-rebase.md
+│   ├── remotes.md
+│   └── troubleshooting.md
+├── 03-github-cli/
+│   ├── installation.md
+│   ├── authentication.md
+│   ├── repository.md
+│   ├── issues.md
+│   ├── pull-requests.md
+│   ├── actions.md
+│   ├── releases.md
+│   ├── api.md
+│   └── scripting.md
+├── 04-ai-agents/
+│   ├── operating-model.md
+│   ├── repository-discovery.md
+│   ├── planning.md
+│   ├── editing.md
+│   ├── git-workflow.md
+│   ├── github-workflow.md
+│   ├── validation.md
+│   ├── pull-request-workflow.md
+│   └── permissions-and-safety.md
+├── 05-automation/
+│   ├── github-actions.md
+│   ├── ci-cd.md
+│   ├── issue-automation.md
+│   ├── pr-automation.md
+│   ├── agent-automation.md
+│   └── pages-deployment.md
+├── 06-patterns/
+│   ├── daily-workflow.md
+│   ├── bugfix.md
+│   ├── feature-development.md
+│   ├── documentation-change.md
+│   ├── release-workflow.md
+│   └── incident-recovery.md
+└── 07-reference/
+    ├── git-cheatsheet.md
+    ├── gh-cheatsheet.md
+    ├── exit-codes.md
+    ├── permissions.md
+    └── glossary.md
+```
+
+Die konkrete Ordnerstruktur darf an das bestehende Repository angepasst werden. Die fachliche Reihenfolge soll jedoch erhalten bleiben:
+
+**Grundlagen → Git → GitHub CLI → KI-Agenten → Automatisierung → Praxis → Referenz**
+
+## 5. Inhaltliche Regeln
+
+### 5.1 Git und GitHub CLI klar trennen
+
+Git und GitHub CLI sind unterschiedliche Werkzeuge.
+
+- Git verwaltet Versionshistorie, Branches, Commits, Remotes und den lokalen/verteilen Versionskontroll-Workflow.
+- GitHub CLI steuert GitHub-Funktionen wie Issues, Pull Requests, Actions, Releases oder API-Aufrufe.
+- Viele Workflows kombinieren beide Werkzeuge.
+
+Diese Trennung muss in Erklärungen sichtbar bleiben.
+
+### 5.2 Agenten als kontrollierte Operatoren erklären
+
+Ein KI-Agent ist in dieser Dokumentation kein „magischer Autopilot“. Beschreibe ihn als Software-Operator, der:
+
+1. Kontext sammelt,
+2. den Repository-Zustand analysiert,
+3. einen begrenzten Plan erstellt,
+4. Änderungen lokal durchführt,
+5. Änderungen validiert,
+6. Git-Aktionen ausführt,
+7. GitHub-Aktionen über `gh` durchführt,
+8. Ergebnisse anhand von Rückmeldungen aus Tests und CI nachbessert.
+
+Agenten sollen bevorzugt beobachtbare, reproduzierbare Kommandos verwenden und ihren Zustand nicht nur aus Annahmen ableiten.
+
+### 5.3 Konkrete Möglichkeiten zeigen
+
+Die Dokumentation soll zeigen, was ein Agent mit Git/GitHub CLI praktisch erledigen kann, zum Beispiel:
+
+- Repository und Branch-Zustand untersuchen,
+- Issues lesen, erstellen, kommentieren und aktualisieren,
+- Pull Requests erstellen, prüfen und kommentieren,
+- CI-Checks und Workflow-Runs analysieren,
+- Releases vorbereiten und veröffentlichen,
+- GitHub API-Abfragen mit `gh api` durchführen,
+- strukturierte JSON-Ausgaben für skriptbare Agenten-Workflows verwenden,
+- wiederkehrende Routineaufgaben automatisieren,
+- Dokumentation ändern und anschließend per Pull Request veröffentlichen,
+- GitHub Pages Deployments beobachten und verifizieren.
+
+Die jeweils gültigen Befehle müssen mit der aktuellen GitHub-CLI-Dokumentation abgeglichen werden. Beispiele für Issues und Pull Requests sind unter anderem `gh issue list/view/create` sowie `gh pr list/view/create/checks`.
+
+### 5.4 `gh api` mit Bedacht verwenden
+
+`gh api` ist ein Escape Hatch für GitHub-API-Funktionen, für die kein passender High-Level-CLI-Befehl vorhanden ist. Es führt authentifizierte API-Anfragen aus und unterstützt auch strukturierte Datenverarbeitung.
+
+Bevorzugt:
+
+```bash
+gh <fachbereich> <aktion>
+```
+
+und erst danach:
+
+```bash
+gh api <endpoint>
+```
+
+### 5.5 Authentifizierung erklären, ohne Secrets zu verbreiten
+
+Die Dokumentation darf erklären, wie `gh auth login`, `gh auth status` und `gh auth setup-git` funktionieren. `gh auth setup-git` konfiguriert Git so, dass GitHub CLI als Credential Helper verwendet wird.
+
+Tokens dürfen niemals in Beispielausgaben, Screenshots, Commits oder Log-Auszüge aufgenommen werden.
+
+`gh auth status --show-token` darf in normalen Lernbeispielen **nicht** verwendet werden, weil es Tokenwerte sichtbar machen kann. Die Existenz eines aktiven Login-Zustands reicht in der Regel aus.
+
+## 6. Standard-Agentenworkflow
+
+Jeder beschriebene Agenten-Workflow soll diesem Muster folgen:
+
+### Phase A — Observe
 
 ```bash
 git status --short --branch
 git remote -v
-node --version
-npm --version
-git --version
-gh --version
 gh auth status
-```
-
-Anschließend:
-
-- Repository-Struktur prüfen.
-- `package.json` und Lockfile identifizieren.
-- Docusaurus-Version aus `package.json` bzw. mit `npx docusaurus --version` prüfen.
-- Vorhandene README-, CONTRIBUTING-, CI/CD- und weitere `AGENTS.md`-Dateien lesen.
-- Bestehende lokale Änderungen nicht überschreiben oder zurücksetzen.
-- Bei einem Dirty Working Tree nur die Dateien des Tasks verändern, sofern der Nutzer nichts anderes verlangt.
-
-## Installation der Werkzeuge
-
-### Git
-
-Git muss installiert und im `PATH` verfügbar sein.
-
-Offizielle Installationsseite:
-https://git-scm.com/install/
-
-Beispiele:
-
-**Windows (winget):**
-
-```powershell
-winget install --id Git.Git -e --source winget
-```
-
-**macOS (Homebrew):**
-
-```bash
-brew install git
-```
-
-**Debian/Ubuntu:**
-
-```bash
-sudo apt update
-sudo apt install git
-```
-
-Nach der Installation:
-
-```bash
-git --version
-```
-
-### GitHub CLI
-
-GitHub CLI heißt `gh` und wird für GitHub-spezifische Vorgänge bevorzugt.
-
-Offizielle Dokumentation:
-https://cli.github.com/manual/
-
-Beispiele:
-
-**Windows (winget):**
-
-```powershell
-winget install --id GitHub.cli
-```
-
-**macOS (Homebrew):**
-
-```bash
-brew install gh
-```
-
-**Linux:**
-
-Verwende das offizielle Installationsverfahren für die jeweilige Distribution:
-https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-
-Nach der Installation:
-
-```bash
-gh --version
-```
-
-### GitHub-Authentifizierung
-
-Interaktive Anmeldung:
-
-```bash
-gh auth login
-```
-
-Danach Zustand prüfen:
-
-```bash
-gh auth status
-```
-
-Damit Git Credential Handling für Git über GitHub CLI erfolgen kann:
-
-```bash
-gh auth setup-git
-```
-
-Für GitHub Enterprise:
-
-```bash
-gh auth login --hostname <hostname>
-gh auth setup-git --hostname <hostname>
-```
-
-Tokens niemals in Dateien, Commits, Issues, Pull Requests, Logs oder Chat-Antworten schreiben. Für Headless-/CI-Szenarien `GH_TOKEN` bzw. die von GitHub vorgesehenen Token-Mechanismen verwenden.
-
-## Docusaurus-Regeln
-
-### Dokumentation
-
-Neue Dokumente grundsätzlich als Markdown (`.md`) oder nur bei tatsächlich benötigter Interaktivität als MDX (`.mdx`) anlegen.
-
-Typischer Aufbau:
-
-```text
-docs/
-├── getting-started/
-│   ├── intro.md
-│   └── installation.md
-├── guides/
-└── reference/
-```
-
-Die Ordnerstruktur soll möglichst die Sidebar-Struktur widerspiegeln. Bei automatisch generierten Sidebars ist dies besonders wichtig.
-
-### Front Matter
-
-Front Matter nur einsetzen, wenn es einen konkreten Zweck erfüllt, zum Beispiel:
-
-```md
----
-title: Installation
-description: Installation und Einrichtung des Projekts
-sidebar_position: 2
-slug: /installation
----
-```
-
-Vorhandene Felder und Konventionen des Projekts nicht ohne Grund umbenennen.
-
-### URLs und IDs
-
-Das Umbenennen von Dateien kann die standardmäßige Dokument-ID bzw. URL verändern. Bei öffentlich erreichbaren Dokumenten daher bestehende URLs stabil halten, zum Beispiel durch einen expliziten `slug`, wenn dies zur Repository-Konvention passt.
-
-### Sidebar
-
-Vor einer Änderung an `sidebars.js` oder einer ähnlichen Sidebar-Konfiguration zuerst prüfen, ob das Projekt eine automatisch generierte Sidebar verwendet.
-
-Nicht gleichzeitig Dateipfade und Sidebar-Konfiguration unnötig umstrukturieren.
-
-### Konfiguration
-
-Vor Änderungen an `docusaurus.config.*`, `sidebars.*`, Theme- oder Plugin-Konfiguration die bestehende Struktur lesen und nur die tatsächlich benötigten Stellen ändern.
-
-Keine experimentellen Plugins oder zusätzlichen Abhängigkeiten hinzufügen, wenn die Aufgabe ohne sie lösbar ist.
-
-### Start, Build und Validierung
-
-Den vorhandenen Paketmanager verwenden. Beispiele für npm:
-
-```bash
-npm install
-npm run start
-npm run build
-```
-
-`npm run start` ist für die lokale Vorschau; `npm run build` prüft den Produktions-Build. Bei anderen Paketmanagern die entsprechenden Scripts des Repositories verwenden.
-
-Vor Abschluss mindestens:
-
-```bash
-npm run build
-git diff --check
-git status --short --branch
-```
-
-Weitere vorhandene Checks wie `npm test`, `npm run lint`, `npm run typecheck` oder CI-spezifische Kommandos ebenfalls ausführen, wenn sie im Repository definiert sind oder für die Änderung relevant sind.
-
-## Git-Arbeitsweise
-
-### Branching
-
-Nicht direkt auf dem Default-Branch arbeiten, sofern der Nutzer dies nicht ausdrücklich verlangt und die Repository-Regeln es zulassen.
-
-Bevorzugtes Muster:
-
-```bash
-git switch -c docs/<kurze-beschreibung>
-```
-
-Alternativ z. B. `feat/`, `fix/`, `chore/` passend zum Repository-Konventionen.
-
-### Commits
-
-Commits sollen klein und logisch sein. Eine Commit-Message beschreibt die Änderung, nicht den gesamten Dialog mit dem Nutzer.
-
-Beispiel:
-
-```bash
-git add docs/installation.md
-
-git commit -m "docs: improve installation guide"
-```
-
-Keine fremden oder bereits vorhandenen lokalen Änderungen in einen Commit aufnehmen.
-
-### Push
-
-Vor dem Push prüfen:
-
-```bash
-git status --short --branch
-git diff --cached
-```
-
-Push nur auf den vorgesehenen Feature-Branch:
-
-```bash
-git push -u origin <branch>
-```
-
-Nicht mit `--force` pushen, außer der Nutzer verlangt dies ausdrücklich und die Konsequenzen sind verstanden.
-
-## GitHub CLI — Arbeitsweise des KI-Agenten
-
-GitHub CLI ist die bevorzugte Schnittstelle für GitHub, statt GitHub-Webseiten manuell zu simulieren oder API-Aufrufe mit beliebigen HTTP-Clients zu bauen.
-
-### Repository-Informationen
-
-```bash
 gh repo view --json nameWithOwner,defaultBranchRef,url
 ```
 
-Repositories auflisten oder klonen:
+Bei Bedarf:
 
 ```bash
-gh repo list <owner>
-gh repo clone <owner>/<repo>
-```
-
-### Issues lesen und bearbeiten
-
-```bash
+git log --oneline --decorate -10
+git branch --all
 gh issue list
-gh issue view <nummer>
-gh issue create --title "..." --body "..."
-gh issue comment <nummer> --body "..."
+gh pr status
 ```
 
-Issues nur erstellen, kommentieren, schließen oder bearbeiten, wenn es Teil des Auftrags ist oder der Nutzer dies ausdrücklich erlaubt.
+### Phase B — Plan
 
-### Pull Requests
+Der Agent soll die Aufgabe, betroffene Dateien, erforderliche Git-Schritte und erforderliche GitHub-Schritte identifizieren, bevor er schreibende Operationen ausführt.
 
-Status prüfen:
+### Phase C — Change
 
-```bash
-gh pr list
-gh pr view <nummer>
-gh pr checks <nummer>
-```
+Lokale Änderungen zuerst im Arbeitsbaum umsetzen. Vorhandene lokale Änderungen nicht löschen, überschreiben oder zurücksetzen, sofern dies nicht ausdrücklich beauftragt ist.
 
-Pull Request erstellen:
+### Phase D — Validate
 
-```bash
-gh pr create --base <default-branch> --head <feature-branch> --title "..." --body "..."
-```
-
-Für einen Draft:
-
-```bash
-gh pr create --draft --base <default-branch> --head <feature-branch> --title "..." --body "..."
-```
-
-Bei vorhandenen Pull Requests zuerst Beschreibung, Checks und Review-Status lesen, bevor Änderungen vorgenommen werden.
-
-### GitHub Actions
-
-Runs anzeigen:
-
-```bash
-gh run list
-gh run view <run-id>
-```
-
-Bei einem fehlgeschlagenen Check möglichst zuerst die Logs des konkreten Runs untersuchen, statt blind Änderungen vorzunehmen.
-
-### Strukturierte Ausgabe
-
-Für Skripte und Agenten bevorzugt strukturierte Ausgabe nutzen:
-
-```bash
-gh issue list --json number,title,state,url
-
-gh pr list --json number,title,state,headRefName,baseRefName,url
-```
-
-Mit `--jq` können relevante Felder gezielt extrahiert werden.
-
-### GitHub API
-
-`gh api` nur verwenden, wenn kein passender höherer `gh`-Befehl existiert:
-
-```bash
-gh api repos/<owner>/<repo>
-```
-
-Keine unnötigen Schreiboperationen über `gh api` durchführen.
-
-### Optional: Agent Tasks und Skills
-
-Neuere GitHub-CLI-Versionen bieten zusätzlich `gh agent-task` und `gh skill` als Preview-Funktionen. Diese sind nur zu verwenden, wenn das konkrete Umfeld sie unterstützt und der Task sie ausdrücklich oder sinnvoll voraussetzt. Preview-Funktionen nicht als stabile Projektvoraussetzung behandeln.
-
-Beispiele:
-
-```bash
-gh agent-task list
-gh skill list
-```
-
-## Empfohlener Agenten-Workflow
-
-### 1. Verstehen
-
-- Task lesen.
-- Repository-Regeln lesen.
-- Betroffene Dateien identifizieren.
-- Git-Status und Remote prüfen.
-- GitHub-Kontext mit `gh` prüfen, wenn der Task GitHub betrifft.
-
-### 2. Planen
-
-Vor Änderungen kurz festlegen:
-
-- welche Dateien geändert werden,
-- welche Docusaurus- oder GitHub-Abhängigkeiten betroffen sind,
-- welche Validierungen notwendig sind.
-
-Bei einfachen Änderungen keinen unnötig langen Plan erzeugen.
-
-### 3. Ändern
-
-- Bestehende Muster bevorzugen.
-- Keine großen Refactorings im Rahmen eines kleinen Dokumentations-Tasks.
-- Neue Abhängigkeiten nur mit nachvollziehbarem Nutzen.
-- Inhalte verständlich, präzise und wartbar formulieren.
-- Keine Secrets einchecken.
-
-### 4. Prüfen
-
-Nach Änderungen:
+Mindestens:
 
 ```bash
 git diff --check
-npm run build
 git status --short --branch
 ```
 
-Zusätzlich relevante Tests/Linter/Typechecks ausführen.
+Bei Docusaurus zusätzlich den vorhandenen Build-Befehl ausführen.
 
-### 5. GitHub-Schritte
+### Phase E — Commit
 
-Wenn der Task einen Issue-/PR-/Actions-Schritt enthält:
+Nur thematisch zusammengehörige Änderungen committen. Commit-Nachrichten sollen kurz, sachlich und reproduzierbar sein.
 
-1. Authentifizierung mit `gh auth status` prüfen.
-2. Remote und Repository verifizieren.
-3. Branch prüfen/erstellen.
-4. Änderungen committen.
-5. Feature-Branch pushen.
-6. PR mit `gh pr create` anlegen oder bestehenden PR aktualisieren.
-7. Checks mit `gh pr checks` bzw. `gh run` prüfen.
-8. Am Ende die erzeugte PR-/Issue-URL nennen.
+### Phase F — Push / Pull Request
 
-Keine automatisch ausgelösten Folgeaktionen durchführen, die über den Auftrag hinausgehen.
+Feature-Branches bevorzugen. Für GitHub-Arbeit die GitHub CLI nutzen, zum Beispiel:
 
-## Sicherheitsregeln
+```bash
+git push -u origin <branch>
+gh pr create --fill
+```
 
-- Keine Token-Ausgaben wie `gh auth token` verwenden, außer ein konkreter Debugging-Fall erfordert dies und die Ausgabe wird sofort geschützt; grundsätzlich ist der Befehl zu vermeiden.
-- Keine Secrets aus Umgebungsvariablen ausgeben.
-- Niemals Dateien wie `.env`, Secret Stores oder Credential-Dateien in einen Commit aufnehmen.
-- `gh auth status` ohne `--show-token` verwenden.
-- Vor destruktiven Git-Befehlen wie `reset --hard`, `clean -fd`, `checkout -- <file>` oder erzwungenem Push die lokalen Änderungen und Auswirkungen prüfen. Ohne ausdrücklichen Auftrag keine destruktiven Operationen ausführen.
-- Keine fremden lokalen Änderungen löschen.
+### Phase G — CI und Deployment
 
-## Kommunikationsregeln des Agenten
+Nach Push oder Merge nicht nur den Push als Erfolg betrachten. Actions-Runs mit `gh run list`, `gh run view` oder `gh run watch` prüfen. `gh workflow run` kann einen Workflow auslösen, wenn dieser `workflow_dispatch` unterstützt.
 
-Am Ende einer Arbeit:
+## 7. GitHub Pages und Docusaurus
 
-1. Zusammenfassen, was geändert wurde.
-2. Relevante Validierungen nennen.
-3. Offene Punkte oder fehlgeschlagene Checks klar benennen.
-4. Bei GitHub-Aktionen die betroffene Issue-/PR-Nummer oder URL nennen.
-5. Keine Behauptung aufstellen, ein Check sei erfolgreich, wenn er nicht tatsächlich ausgeführt bzw. aus einem belastbaren Ergebnis abgeleitet wurde.
+GitHub Pages wird per GitHub Actions veröffentlicht. Der Agent soll keine `build/`-Artefakte von Hand auf einen Deployment-Branch committen, wenn das Repository einen Actions-basierten Pages-Workflow verwendet.
 
-## Offizielle Referenzen
+Docusaurus erzeugt den Produktionsoutput in `build/`.
 
-- Docusaurus: https://docusaurus.io/docs
-- Docusaurus Installation: https://docusaurus.io/docs/installation
-- Docusaurus CLI: https://docusaurus.io/docs/cli
-- Docusaurus Dokumente: https://docusaurus.io/docs/create-doc
-- Docusaurus Sidebar: https://docusaurus.io/docs/sidebar
-- Git: https://git-scm.com/install/
-- GitHub CLI Manual: https://cli.github.com/manual/
-- GitHub CLI Auth: https://cli.github.com/manual/gh_auth_login
-- GitHub CLI Git Credential Helper: https://cli.github.com/manual/gh_auth_setup-git
+Die bevorzugte technische Form ist:
+
+```text
+Git source
+   ↓
+GitHub repository
+   ↓
+GitHub Actions
+   ↓
+Docusaurus build
+   ↓
+Pages artifact
+   ↓
+GitHub Pages
+```
+
+Für Actions-basierte Pages-Deployments sind die aktuellen offiziellen Action-Repositories zu prüfen. Beispielhaft existieren derzeit `actions/checkout`, `actions/setup-node`, `actions/configure-pages`, `actions/upload-pages-artifact` und `actions/deploy-pages`; die jeweils aktuell freigegebenen Major-Versionen sind vor einer Änderung zu verifizieren.
+
+Vor Veröffentlichung:
+
+- `url` und `baseUrl` korrekt für GitHub Pages setzen,
+- Projekt-Pages (`OWNER.github.io/REPO/`) von User-/Organization-Pages (`OWNER.github.io/`) unterscheiden,
+- bestehende Custom-Domain-Konfiguration respektieren,
+- Deployment erst dann als erfolgreich melden, wenn der relevante Actions-Run erfolgreich war.
+
+## 8. Monochromes Design — verbindliche UI-Richtlinie
+
+Die Website soll **monochrom** gestaltet sein.
+
+### Farbprinzip
+
+Nur Schwarz, Weiß und neutrale Graustufen verwenden:
+
+```text
+#000000
+#111111
+#222222
+#444444
+#666666
+#888888
+#AAAAAA
+#CCCCCC
+#EEEEEE
+#FFFFFF
+```
+
+Kein buntes Akzentfarbsystem, keine Farbverläufe und keine dekorativen Farbverläufe in Karten, Buttons oder Hintergründen.
+
+### Visuelle Sprache
+
+- klare Schwarz-Weiß-Kontraste,
+- dünne bis mittlere Rahmen,
+- flache Flächen,
+- keine Glas-/Neon-/Gradienten-Optik,
+- reduzierte Schatten oder möglichst keine Schatten,
+- technische, ruhige, editoriale Anmutung,
+- starke Typografie-Hierarchie,
+- großzügiger Weißraum,
+- Code und Terminalausgaben visuell prominent.
+
+### Interaktion
+
+Hover-, Focus- und Active-Zustände ebenfalls monochrom umsetzen, beispielsweise über Helligkeitswechsel, Unterstreichungen, Rahmen oder invertierte Flächen statt über Farben.
+
+Accessibility geht vor Ästhetik: Text und interaktive Elemente müssen ausreichenden Kontrast behalten, Tastaturfokus sichtbar machen und auch ohne Farbe verständlich bleiben.
+
+### Docusaurus-Theming
+
+Vorhandene Docusaurus-Theme-Strukturen wiederverwenden. Für ein Redesign vorzugsweise `src/css/custom.css` sowie vorhandene Theme-Overrides nutzen, statt unnötig die gesamte Theme-Architektur zu swizzlen.
+
+Vor dem Redesign prüfen:
+
+- `src/css/custom.css`
+- `docusaurus.config.*`
+- vorhandene Theme-Komponenten
+- Navbar/Footer
+- Docs-Sidebar
+- Search UI, sofern vorhanden
+- Code-Block-Theme
+
+## 9. Schreibstil
+
+Die Dokumentation soll:
+
+- technisch präzise,
+- handlungsorientiert,
+- klar und direkt,
+- freundlich, aber nicht werblich,
+- deutsch als Hauptsprache,
+- mit englischen CLI-/Git-Begriffen dort, wo sie als Fachbegriffe üblich sind.
+
+Bevorzuge:
+
+```text
+Was macht der Befehl?
+Wann benutze ich ihn?
+Welche Voraussetzungen gibt es?
+Was passiert dabei?
+Wie kann ein KI-Agent ihn sicher einsetzen?
+Was kann schiefgehen?
+```
+
+Vermeide Marketingformulierungen wie „magisch“, „revolutionär“ oder „vollautomatisch ohne Kontrolle“.
+
+## 10. Codebeispiele
+
+Alle Shell-Beispiele sollen realistisch und direkt ausführbar sein.
+
+Bevorzuge:
+
+```bash
+gh repo view
+
+gh issue list --json number,title,state
+
+gh pr status
+
+gh run list --limit 10
+```
+
+Für Agenten und Skripte möglichst strukturierte Ausgabe einsetzen:
+
+```bash
+gh issue list --json number,title,state,url
+```
+
+Keine erfundenen Flags verwenden. Bei versionsabhängigen Features kenntlich machen, dass die konkrete CLI-Version geprüft werden muss.
+
+## 11. Installation von Git und GitHub CLI
+
+Die Dokumentation soll Installation und Erstkonfiguration abdecken.
+
+Git:
+
+- offizielle Installationsseite: https://git-scm.com/install/
+- danach `git --version` prüfen.
+
+GitHub CLI:
+
+- offizielle Installationsseite/Dokumentation: https://cli.github.com/
+- danach `gh --version` und `gh auth status` prüfen.
+
+Beispielhaft für die Authentifizierung:
+
+```bash
+gh auth login
+gh auth status
+gh auth setup-git
+```
+
+`gh auth login` unterstützt Web-/Browser-Login sowie weitere Modi; die konkrete Wahl soll von Umgebung und Sicherheitsanforderungen abhängen.
+
+## 12. Sicherheitsregeln für KI-Agenten
+
+Ein Agent darf:
+
+- den Repository-Zustand lesen,
+- lokale Änderungen durchführen,
+- Git-Historie und Branches analysieren,
+- GitHub-Daten lesen,
+- nach explizitem Auftrag GitHub-Ressourcen verändern,
+- CI/CD-Ergebnisse auswerten.
+
+Ein Agent muss vor riskanten Aktionen besonders vorsichtig sein bei:
+
+- force push,
+- Branch-Löschung,
+- Issue/PR-Schließung oder -Löschung,
+- Release-Veröffentlichung,
+- Änderungen an Branch Protection oder Repository-Regeln,
+- Secrets und Tokens,
+- Produktionsdeployments,
+- API-Schreibzugriffen mit weitreichenden Berechtigungen.
+
+Keine destruktiven Befehle wie `git reset --hard`, `git clean -fd` oder Force-Push einsetzen, ohne dass dies für den konkreten Task ausdrücklich erforderlich und autorisiert ist.
+
+## 13. Definition of Done für Dokumentationsänderungen
+
+Eine thematische Änderung ist erst abgeschlossen, wenn:
+
+1. die alten Docusaurus-zentrierten Inhalte fachlich ersetzt, neu eingeordnet oder bewusst entfernt wurden,
+2. die Navigation die neue Git/GitHub-CLI/Agenten-Struktur widerspiegelt,
+3. das gesamte UI monochrom umgesetzt ist,
+4. interne Links und Codebeispiele funktionieren,
+5. der Docusaurus-Build erfolgreich ist,
+6. `git diff --check` erfolgreich ist,
+7. GitHub Pages über den vorgesehenen Actions-Workflow erfolgreich deployt wurde,
+8. die veröffentlichte URL verifiziert werden konnte.
+
+## 14. Verbotene Fehlannahmen
+
+Nicht annehmen, dass:
+
+- der Default-Branch `main` heißt,
+- das Repository öffentlich ist,
+- GitHub Pages bereits aktiviert ist,
+- die Repository-URL einer bestimmten Organisation gehört,
+- eine bestimmte Shell verwendet wird,
+- npm der Paketmanager ist,
+- ein bestimmter Docusaurus-Workflow bereits existiert.
+
+Solche Fakten zuerst aus Repository oder GitHub ermitteln.
