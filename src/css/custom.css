@@ -1,30 +1,282 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Monochromes Theme: Schwarz, Weiss und neutrale Graustufen.
+ * Keine bunten Akzente, keine Verlaeufe, keine Neon-/Glass-Effekte.
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #111111;
+  --ifm-color-primary-dark: #000000;
+  --ifm-color-primary-darker: #000000;
+  --ifm-color-primary-darkest: #000000;
+  --ifm-color-primary-light: #222222;
+  --ifm-color-primary-lighter: #444444;
+  --ifm-color-primary-lightest: #666666;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
+
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #111111;
+  --ifm-hr-border-color: #cccccc;
+
+  --mono-border: #222222;
+  --mono-muted: #666666;
+  --mono-faint: #eeeeee;
+  --mono-code-bg: #111111;
+  --mono-code-fg: #ffffff;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #ffffff;
+  --ifm-color-primary-dark: #eeeeee;
+  --ifm-color-primary-darker: #cccccc;
+  --ifm-color-primary-darkest: #aaaaaa;
+  --ifm-color-primary-light: #ffffff;
+  --ifm-color-primary-lighter: #ffffff;
+  --ifm-color-primary-lightest: #ffffff;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.12);
+
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #111111;
+  --ifm-navbar-background-color: #000000;
+  --ifm-footer-background-color: #000000;
+  --ifm-hr-border-color: #444444;
+
+  --mono-border: #888888;
+  --mono-muted: #aaaaaa;
+  --mono-faint: #222222;
+  --mono-code-bg: #111111;
+  --mono-code-fg: #ffffff;
+}
+
+/* Typografie: klare Hierarchie, viel Weissraum. */
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  letter-spacing: -0.01em;
+}
+
+.markdown p,
+.markdown li {
+  line-height: 1.7;
+}
+
+/* Links: monochrom, Unterstrich bei Hover/Focus. */
+a {
+  text-decoration: none;
+}
+
+.markdown a,
+.navbar__link,
+.footer__link-item,
+.menu__link {
+  text-decoration: none;
+}
+
+.markdown a:hover,
+.markdown a:focus-visible,
+.navbar__link:hover,
+.footer__link-item:hover,
+.menu__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Sichtbarer Tastaturfokus. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Navbar: duenne Trennlinie statt Schatten. */
+.navbar {
+  border-bottom: 1px solid var(--ifm-hr-border-color);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Hero auf der Startseite: flach, mit Rahmen. */
+.hero--primary {
+  --ifm-hero-background-color: var(--ifm-background-color);
+  --ifm-hero-text-color: var(--ifm-font-color-base);
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  border-bottom: 2px solid var(--mono-border);
+}
+
+/* Karten und Container: flach mit duennem Rahmen. */
+.card,
+.alert,
+.prism-code,
+.theme-code-block,
+.menu,
+.table-of-contents {
+  border-radius: 4px;
+}
+
+.card {
+  border: 1px solid var(--mono-border);
+  box-shadow: none;
+}
+
+/* Admonitions monochrom halten. */
+.alert {
+  border: 1px solid var(--mono-border);
+  box-shadow: none;
+}
+
+.alert--info,
+.alert--success,
+.alert--warning,
+.alert--danger,
+.alert--secondary {
+  --ifm-alert-background-color: var(--ifm-background-surface-color);
+  --ifm-alert-border-color: var(--mono-border);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+}
+
+/* Codebloecke: kontrastreiche Terminal-Optik. */
+.prism-code,
+.theme-code-block,
+pre.prism-code {
+  border: 1px solid var(--mono-border);
+  box-shadow: none;
+}
+
+code {
+  border: 1px solid var(--ifm-hr-border-color);
+  border-radius: 4px;
+}
+
+pre code {
+  border: none;
+}
+
+/* Tabellen: duenne Linien, keine Farben. */
+table {
+  border: 1px solid var(--mono-border);
+}
+
+table thead tr {
+  background: var(--mono-faint);
+  border-bottom: 2px solid var(--mono-border);
+}
+
+table tr {
+  border-bottom: 1px solid var(--ifm-hr-border-color);
+}
+
+/* Sidebar: aktive Eintraege invertiert statt farbig. */
+.menu__link--active {
+  background: var(--mono-border);
+  color: var(--ifm-background-color);
+  font-weight: 700;
+}
+
+[data-theme='dark'] .menu__link--active {
+  background: var(--ifm-color-primary);
+  color: #000000;
+}
+
+/* Buttons: monochrom, invertiert bei Hover. */
+.button--primary,
+.button--secondary {
+  border: 1px solid var(--mono-border);
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.button--secondary:hover,
+.button--primary:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Footer bleibt schwarz/weiss. */
+.footer {
+  border-top: 2px solid var(--mono-border);
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #111111;
+  --ifm-footer-color: #ffffff;
+  --ifm-footer-link-color: #cccccc;
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #000000;
+  border-top: 1px solid #444444;
+}
+
+/* Bilder und Diagramme: keine Schatten. */
+.markdown img,
+.hero img,
+.card__image img {
+  box-shadow: none;
+  border: 1px solid var(--ifm-hr-border-color);
+  border-radius: 4px;
+}
+
+/* Startseiten-Feature-Kacheln. */
+.mono-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+@media screen and (max-width: 996px) {
+  .mono-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mono-card {
+  border: 1px solid var(--mono-border);
+  border-radius: 4px;
+  padding: 1.25rem;
+  background: var(--ifm-background-surface-color);
+}
+
+.mono-card h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.mono-card p {
+  color: var(--mono-muted);
+  margin-bottom: 0.75rem;
+}
+
+.mono-kicker {
+  display: inline-block;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  border: 1px solid var(--mono-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.mono-terminal {
+  background: var(--mono-code-bg);
+  color: var(--mono-code-fg);
+  border: 1px solid var(--mono-border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.mono-terminal .prompt {
+  color: #aaaaaa;
+  user-select: none;
 }
